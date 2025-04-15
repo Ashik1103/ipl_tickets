@@ -64,7 +64,7 @@ driver.get(link)
 driver.implicitly_wait(10)
 elems=driver.find_elements(By.CSS_SELECTOR,".css-q38j1a")
 
-if len(elems)==2:
+if len(elems)!=2:
   print(elems)
   print(len(elems))
   print("not yet")
