@@ -6,11 +6,15 @@ from flask import Flask
 import json
 import os
 app = Flask(__name__)
+import chromedriver_autoinstaller 
 
 
 firebase_json = os.getenv("FIREBASE_CREDENTIALS")
 firebase_dict = json.loads(firebase_json)
 cred = credentials.Certificate(firebase_dict)
+
+if not firebase_admin._apps:
+    firebase_admin.initialize_app(cred)
 def send_push_notification(token, title, body):
     message = messaging.Message(
         notification=messaging.Notification(
@@ -28,6 +32,7 @@ def home():
 
 @app.route("/check_tickets", methods=["GET"])
 def check_tickets():
+    chromedriver_autoinstaller.install()
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--no-sandbox')
@@ -37,6 +42,8 @@ def check_tickets():
     chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
     chrome_options.add_experimental_option('useAutomationExtension', False)
     chrome_options.add_argument('log-level=3')
+    chrome_options.add_argument("--user-data-dir=/tmp/chrome-user-data")
+
 
     driver = webdriver.Chrome(options=chrome_options)
     driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
