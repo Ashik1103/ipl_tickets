@@ -1,19 +1,24 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver import ActionChains
-import shutil
-import pandas as pd
-import requests
 import firebase_admin
 from firebase_admin import credentials, messaging
 
 # Path to your downloaded service account JSON file
 cred = credentials.Certificate("service_account.json")
 firebase_admin.initialize_app(cred)
-CHROME_DRIVER_PATH = "C:\\chromedriver_win32\\chromedriver.exe"
 
-
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--disable-dev-shm-usage')
+chrome_options.add_argument("start-maximized")
+chrome_options.add_argument('--disable-blink-features=AutomationControlled')
+chrome_options.add_experimental_option("excludeSwitches", ["enable-automation"])
+chrome_options.add_experimental_option('useAutomationExtension', False)
+# options.add_argument("--headless")
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-gpu")
+chrome_options.add_argument('log-level=3')
 options = webdriver.ChromeOptions()
 # options.add_argument("start-maximized")
 # options.add_argument('--window-size=1920x1080')
@@ -26,7 +31,7 @@ options.add_argument("--no-sandbox")
 options.add_argument("--disable-gpu")
 options.add_argument('log-level=3')
 
-driver = webdriver.Chrome(executable_path=CHROME_DRIVER_PATH, options=options)
+driver = webdriver.Chrome(options=chrome_options)
 
 # Change userAgent
 driver.execute_script(
