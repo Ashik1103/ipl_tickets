@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "778961524557",
+    "project_id": "hola-rcb",
+    "storage_bucket": "hola-rcb.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778961524557:android:c39fba5630dfd7a7158904",
+        "android_client_info": {
+          "package_name": "com.example.rcb"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALfb5tF3YUi4NRX7L8EgYUJfqtuuGKFJQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
