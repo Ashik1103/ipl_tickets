@@ -2,5 +2,4 @@ selenium
 firebase-admin
 flask
 gunicorn
-json
 os
