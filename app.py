@@ -54,7 +54,7 @@ def check_tickets():
             return "Tickets not yet available"
 
         send_push_notification(
-            token='your-FCM-token-here',
+            token='csbvwkfFTg6sH6Ct_jgNwa:APA91bGqgYIgKPXJ8zcrUhpu4sUCo0jeoykAsKB1CE5hlufBTHvCkouDWz_sH4FRuStsJ8a-8zDLz2fxTVNFJA_rKs5C3098sRQeSCi66aawVVdomw2ruvY',
             title='RCB vs CSK tickets are out',
             body='Grab em now!!!!'
         )
