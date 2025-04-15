@@ -22,7 +22,10 @@ def send_push_notification(token, title, body):
     response = messaging.send(message)
     print("Successfully sent message:", response)
 
-# Flask route
+@app.route("/", methods=["GET"])
+def home():
+    return "Its running!!!"
+
 @app.route("/check_tickets", methods=["GET"])
 def check_tickets():
     chrome_options = webdriver.ChromeOptions()
