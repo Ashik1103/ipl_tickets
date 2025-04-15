@@ -1,2 +1,4 @@
 selenium
 firebase-admin
+flask
+gunicorn
