@@ -4,7 +4,7 @@ FROM python:3.11-slim
 # Prevent prompts during package installation
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install Chrome and dependencies
+# Install necessary dependencies for Chrome and Chromedriver
 RUN apt-get update && apt-get install -y \
     wget \
     curl \
@@ -23,21 +23,21 @@ RUN apt-get update && apt-get install -y \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Set Chrome binary path
+# Set environment variables for Chrome and Chromedriver paths
 ENV CHROME_BIN="/usr/bin/chromium"
 ENV CHROMEDRIVER_PATH="/usr/bin/chromedriver"
 
-# Set workdir
+# Set working directory
 WORKDIR /app
 
-# Copy app files
+# Copy application code
 COPY . /app
 
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose the port Flask runs on
+# Expose port for Flask
 EXPOSE 10000
 
-# Start the Flask app
+# Run the Flask app
 CMD ["python", "app.py"]

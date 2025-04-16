@@ -1,3 +1,4 @@
+import subprocess
 from flask import Flask
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -32,6 +33,15 @@ def send_push_notification(token, title, body):
 @app.route("/", methods=["GET"])
 def home():
     return "It's running!!!"
+
+@app.route("/check_chromium", methods=["GET"])
+def check_chromium():
+    try:
+        # Check if Chromium is available and print the version
+        output = subprocess.check_output(["/usr/bin/chromium", "--version"])
+        return f"Chromium version: {output.decode()}"
+    except Exception as e:
+        return f"Chromium not found: {e}"
 
 # Main route
 @app.route("/check_tickets", methods=["GET"])
